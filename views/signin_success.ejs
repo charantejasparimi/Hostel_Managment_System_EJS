@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-In Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("public/signin_success_page.jpg");
+            background-size: 100% 100%;
+        }
+
+        .success-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .success-container h1 {
+            color: #4CAF50;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            color: #4CAF50;
+        }
+
+        .success-message {
+            margin-top: 10px;
+            color: #0d0d0d;
+        }
+
+        .login-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            
+            
+        }
+        button{
+            color: #f5f5f8;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: #434141;
+            border-radius: 50%;
+            height: 50px;
+        }
+
+        button:hover {
+            text-decoration: underline;
+            color: #604df0;
+            background-color: #ccc9c9;
+        }
+
+        .login-link-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <i class="success-icon">&#10004;</i>
+        <h1>Sign-In Successful</h1>
+        <p class="success-message">You are now logged in.</p>
+        
+        <div class="login-link-container">
+            <a href="login_page.html" class="login-link"><button>Login Page</button></a>
+        </div>
+    </div>
+</body>
+</html>

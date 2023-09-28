@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- YouTube or Website - CodingLab -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar Menu for Admin Dashboard</title>
+    
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <style>
+      /* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  
+}
+body{
+  background-image: url('4.jpg');
+  background-size: 100% 100%;
+
+}
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 260px;
+  background: #11101d;
+  padding: 15px;
+  z-index: 99;
+}
+.logo {
+  font-size: 25px;
+  padding: 0 15px;
+}
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+}
+.menu-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-top: 40px;
+  overflow-y: scroll;
+}
+.menu-content::-webkit-scrollbar {
+  display: none;
+}
+.menu-items {
+  height: 100%;
+  width: 100%;
+  list-style: none;
+  transition: all 0.4s ease;
+}
+.submenu-active .menu-items {
+  transform: translateX(-56%);
+}
+.menu-title {
+  color: #fff;
+  font-size: 14px;
+  padding: 15px 20px;
+}
+.item a,
+.submenu-item {
+  padding: 16px;
+  display: inline-block;
+  width: 100%;
+  border-radius: 12px;
+}
+.item i {
+  font-size: 12px;
+}
+.item a:hover,
+.submenu-item:hover,
+.submenu .menu-title:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.submenu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+}
+.submenu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: calc(-100% - 26px);
+  height: calc(100% + 100vh);
+  background: #11101d;
+  display: none;
+}
+.show-submenu ~ .submenu {
+  display: block;
+}
+.submenu .menu-title {
+  border-radius: 12px;
+  cursor: pointer;
+}
+.submenu .menu-title i {
+  margin-right: 10px;
+}
+.navbar,
+.main {
+  flex-direction: row;
+  left: 260px;
+  width: calc(100% - 260px);
+  transition: all 0.5s ease;
+  z-index: 1000;
+  
+}
+.sidebar.close ~ .navbar,
+.sidebar.close ~ .main {
+  left: 0;
+  width: 100%;
+}
+.navbar {
+  position: fixed;
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 25px;
+  background: #4070f4;
+  cursor: pointer;
+}
+.navbar #sidebar-close {
+  cursor: pointer;
+}
+.main {
+  position: relative;
+  display: flex;
+  padding-top:68px;
+  justify-content: center;
+  height: 100vh;
+  z-index: 100;
+  
+}
+.main h1 {
+  color: #11101d;
+  font-size: 40px;
+  text-align: center;
+}
+.dash{
+  height: 200px;
+  width: 90%;
+  margin: 10px 5% 0px;
+  color: #f7f6f6;
+  background-image: url(3.jpg);
+  background-size: 100% 100%;
+  border-radius: 3%;
+  padding: 40px 20px;
+  font-style: italic;
+  font-size: x-large;
+}
+
+.vishnuimage{
+  background-image: url("vishnu.jpeg");
+  background-size: 100% 100%;
+  height: 400px;
+  width: 90%;
+  margin-top: 2%;
+    margin-left: 5%;
+  
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  </head>
+  <body>
+    <nav class="sidebar">
+      <a href="/admin_dash" class="logo">
+        <img height="70px" width="70px"  src="public/vishnulogo.jpg" alt="Vishnu Hostel Logo"><b style="margin-left: 20px; align-items: center; font-size:larger;">VIT</b>
+    </a>
+      <div class="menu-content">
+          <ul class="menu-items">
+              <li class="item"><a href="admin_dash"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+              <li class="item"><a href="/cc"><i class="fas fa-exclamation-circle"></i> Requested Complaints</a></li>
+              <li class="item"><a href="/completed"><i class="fas fa-check-circle"></i> Services Done</a></li>
+          </ul>
+      </div>
+  </nav>
+
+    <nav class="navbar">
+      <i class="fa-solid fa-bars" id="sidebar-close"></i>
+      <i>Vishnu Complaints</i>
+    </nav>
+
+    <main class="main" style="display: block;">
+      <section class="vishnuimage">
+      </section>
+      <div class="dash">
+        <h3 class="m em">Welcome <%= Email %></h3>
+      <h3 class="m na">Welcome <%= Name %></h3>
+      </div> 
+    </main>
+    
+    
+<script >
+      const sidebar = document.querySelector(".sidebar");
+const sidebarClose = document.querySelector("#sidebar-close");
+const menu = document.querySelector(".menu-content");
+const menuItems = document.querySelectorAll(".submenu-item");
+const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
+
+sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+menuItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    menu.classList.add("submenu-active");
+    item.classList.add("show-submenu");
+    menuItems.forEach((item2, index2) => {
+      if (index !== index2) {
+        item2.classList.remove("show-submenu");
+      }
+    });
+  });
+});
+
+subMenuTitles.forEach((title) => {
+  title.addEventListener("click", () => {
+    menu.classList.remove("submenu-active");
+  });
+});
+
+console.log(menuItems, subMenuTitles);
+
+    </script>
+  </body>
+</html>
